@@ -50,10 +50,11 @@ public class JavaLife {
 	 *             [1] -> Random number seed
 	 *             [2] -> Percent of cells alive
 	 *             [3] -> Maximum number of iterations
+         * There are four of these.
 	 */
 	
 	public static void main(String[] args) {
-		if (args.length != 4) {
+		if (args.length <= 4) {
 			System.err.println(getErrMessage());
 			System.exit(1);
 		}
@@ -65,13 +66,19 @@ public class JavaLife {
 			seed          = Integer.parseInt(args[1]);
 			percent       = Integer.parseInt(args[2]);
 			maxIterations = Integer.parseInt(args[3]);
-			if (size < 0 || seed < 0 || percent < 0 || maxIterations < 0) {
+			if (size < 0 ||
+			    seed < 0 ||
+			    percent < 0 ||
+			    maxIterations < 0) {
 				throw (new NumberFormatException());
 			}
 		} catch (NumberFormatException nfex) {
 			System.err.println(getNumFormatMessage());
 			System.exit(1);
 		}
+		
+		// Create new JavaLife program
+		
 		JavaLife jl = new JavaLife(size, seed, percent, maxIterations);
 	}
 
